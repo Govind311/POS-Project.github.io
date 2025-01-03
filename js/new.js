@@ -1,13 +1,45 @@
+// $("#bright").on("click", function(e){
+    
+//     $("body").show().addClass('bg');
+//     $(".navbar2").show().addClass('bg');
+//     $(".navbar").show().addClass('bg');
+    // $(".new-item").show().addClass('bg');
+    // $(".card").show().addClass('bg');
+    
+    
+// })
+
+// $("#bright").on("click", function(e){
+    
+//     $("body").show().removeClass('bg1');
+//     $(".navbar2").show().removeClass('bg1');
+//     $(".navbar").show().removeClass('bg1');
+  
+// })
+
+// $("#bright").on("click", function(e){
+//     if($("body").hasClass("bg1")){
+//         $("body").addClass("bg")
+//     }
+//     else {
+
+//         $("body").addClass("bg1")
+//     }
+   
+    
+    
+// })
+
 $(document).ready(function(){
 
-    renderCart();
+    getCardItem();
 var categoryUrl="https://dummyjson.com/products/category-list";
 var productUrl="https://dummyjson.com/products/category/";
 var singalproductUrl="https://dummyjson.com/products/";
-
+// // get category list
 
 $.ajax({
-    url: categoryUrl,   
+    url: categoryUrl,   //categoty url
     method: "GET",
     data:{},
     success:function(response){
@@ -40,8 +72,12 @@ $(document).on("click", ".catelist", function () {
         url: productUrl+val,
         method: "GET",
         data: {},
-        success:function(response){  
+        success:function(response){
+            // console.log(response);
+            // alert(val)
+
             let html = "";
+
             response.products.forEach(product => {
                 html += '   <div class="col-lg-4 " >';
                 html += '       <div class="card product"  data-product-id='+product.id+'>';
@@ -54,7 +90,8 @@ $(document).on("click", ".catelist", function () {
                 html += '    </div>';
                 html += '  </div>';
             })
-            $("#products").html(html);     
+            $("#products").html(html);
+            
         }
     })
   });
@@ -62,80 +99,48 @@ $(document).on("click", ".catelist", function () {
 
 
   $(document).on("click", ".product", function (e){
-    var productid =$(this).data('product-id'); 
+    var productid =$(this).data('product-id');
+   
     $.ajax({
-        url: singalproductUrl+productid,  
+        url: singalproductUrl+productid,     
         method: "GET",
         data: {},
-        success:function(product){   
-            updateCart(product)        
+        success:function(product){
+            updateCart(product)
         },
-        error:function(){
-            console.log("Something Wrong")  
+        error : function(){
+            console.log("Something Wrong")
         }
     })
   })
 })
-
-
-function updateCart(product){
-    const cart =loadCart();
-    const productIndex = cart.findIndex(item => item.id === product.id);
-    if(productIndex !== -1){
-        cart[productIndex].qty++;
-    } else {
-        cart.push({...product, qty : 1});
-    }
-    saveCart(cart);
-    renderCart();
-}
-function saveCart(cart){
-    localStorage.setItem("cart",JSON.stringify(cart));
-}
-function loadCart(){
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-
-
-
-  function renderCart(){
+  function randerCart(){
     if(localStorage.getItem("cart")){
         var product = localStorage.getItem("cart");
         product = JSON.parse(product);
         var html = '';
           var i = 1;
-        product.forEach(data => {
+          product.forEach(data =>{     
                 html += '<tr>';
                 html += '<td>'+i+'</td>';
-                html += '<td> '+data.title+'</td>';
-                html += '<td>'+data.price+'</td>';
-                html += '<td>'+data.qty+'</td>';
-                html += '<td> <button type="button" class="delete-btn" data-id="' + data.id + '">Delete</button></td>';
+                html += '<td> '+product.pname+'</td>';
+                html += '<td>'+product.price+'</td>';
+                html += '<td>'+product.Qty+'</td>';
+                html += '<td> <a href="#" class = "btn" id="deleted">Delete</td>';
             html += '</tr>';
-            i++;        
-    })
-    $("#card tbody").html(html)
+           })
+          $("#card tbody").html(html)
+    }
   }
-}
 
-
-
-
-
-$(document).on("click", ".delete-btn", function () {
-    var productId = $(this).data("id");
-    const cart = loadCart();
-    const updatedCart = cart.filter(item => item.id !== productId); 
-    saveCart(updatedCart);
-    renderCart(); 
-});
 
 
 
 
 
   
+
+
 // $("#bright").on("click", function(e){
 //     $(".card-title").show().addClass('fontcolor');
 //     $(".new-item,a").show().addClass('fontcolor');
