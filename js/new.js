@@ -73,9 +73,7 @@ $(document).on("click", ".catelist", function () {
         method: "GET",
         data: {},
         success:function(response){
-            // console.log(response);
-            // alert(val)
-
+           
             let html = "";
 
             response.products.forEach(product => {
@@ -90,11 +88,11 @@ $(document).on("click", ".catelist", function () {
                 html += '    </div>';
                 html += '  </div>';
             })
-            $("#products").html(html);
-            
+            $("#products").html(html);    
         }
     })
   });
+
 
 
 
@@ -114,6 +112,10 @@ $(document).on("click", ".catelist", function () {
     })
   })
 })
+
+
+
+
   function randerCart(){
     if(localStorage.getItem("cart")){
         var product = localStorage.getItem("cart");

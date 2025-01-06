@@ -9,6 +9,11 @@
   border: none;
 }
 
+.navbar-brand {
+  font-size: 35px;
+  margin-top: -30px;
+  margin-left: 20px;
+}
 
 .p1 {
   position: relative;
@@ -112,4 +117,33 @@ input[type=text] {
   color: white;
   border: none;
   border-radius: 5px;
+}
+
+.Current-Order {
+  font-size: 35px;
+  color: gray;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.clear {
+  display: flex;
+
+}
+
+.btn-1 {
+  background-color: rgb(112, 112, 216);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-left: 110px;
+  margin-top: 20px;
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+  width: 110px;
+}
+
+.btn-1:hover {
+  background-color: black;
 }

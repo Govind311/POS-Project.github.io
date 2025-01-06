@@ -14,15 +14,15 @@ $.ajax({
         let html = "";
         var i =0;
         response.forEach(cat => {
-            if(i < 5){
-            
+            if(i < 5)
+            {
                 let formattedCat = cat.replace(/-/g, ' ')
                                     .toLowerCase()
                                     .split(' ')
                                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                     .join(' ');
                                     html += '<div class="card p1 column catelist" style="width: 8rem; height: 13rem;" id='+cat+'>';
-                                    html += '<img src="./images/'+cat+'.svg" alt="" class="CardImage">';
+                                    html += '<img src="./images/'+cat+'.png" alt="" class="CardImage">';
                                     html += '<a href="#" class="text-decoration-none ">';
                                     html += '<h5 class="fw-bold text-dark">'+ formattedCat+'</h5>';
                                     html += '</a>';
@@ -42,7 +42,7 @@ $(document).on("click", ".catelist", function () {
         data: {},
         success:function(response){  
             let html = "";
-            response.products.forEach(product => {
+            response.products.forEach(product => {              
                 html += '   <div class="col-lg-4 " >';
                 html += '       <div class="card product"  data-product-id='+product.id+'>';
                 html += '            <img src="'+product.thumbnail+'" class="card-img-top" alt="...">';
@@ -50,7 +50,7 @@ $(document).on("click", ".catelist", function () {
                 html += '         <h3 class="card-title">'+product.title+'</h3>';
                 html += '        <p class="card-text ">'+product.warrantyInformation+'</p>';
                 html += '       <a href="#" class="Amount">'+product.price+'</a>';
-                html += '       </div>';
+                html += '       </div>';    
                 html += '    </div>';
                 html += '  </div>';
             })
@@ -122,7 +122,6 @@ function loadCart(){
 
 
 
-
 $(document).on("click", ".delete-btn", function () {
     var productId = $(this).data("id");
     const cart = loadCart();
@@ -132,6 +131,53 @@ $(document).on("click", ".delete-btn", function () {
 });
 
 
+
+
+function renderCart(){
+    if(localStorage.getItem("cart")){
+      var product = localStorage.getItem("cart");
+      product = JSON.parse(product);
+      
+      var html = "";
+      var i = 1;
+      let TotalQty = 0;
+      let TotalPrice = 0;
+      // for(data in product){
+        // console.log(data);
+        product.forEach(data => {
+            let total = data.price * data.qty
+          html += `<tr>
+                      <td>${i}</td>
+                      <td>${data.title}</td>
+                      <td>${data.price.toFixed(2)}</td>
+                      <td>${data.qty}</td>
+                      <td> ${total} </td>
+                      <td>
+                      
+                         <button type="button" class="delete-btn delete" data-id="${data.id}">Delete</button>
+                      </td>
+                   </tr>`
+  
+                   i++
+                  TotalQty += data.qty;
+                   TotalPrice += total;
+  
+        })
+          let totalRow = `<tr>
+                          <td> = </td>
+                          <td> Total Price </td>
+                          <td>  </td>
+                          <td> ${TotalQty}</td>
+                          <td> ${TotalPrice.toFixed(2)}</td>
+                          </tr>`
+     
+        
+      // }
+      $("#card tbody").html(html)
+      $("#card tbody").append(totalRow)
+  
+    }
+  }
 
 
 
