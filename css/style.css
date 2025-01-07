@@ -37,14 +37,15 @@
 
 .card-text {
   text-align: center;
-  color: blue;
+  color:darkslateblue;
   font-size: 15px;
+  font-weight: bold;
 }
 
 .card-title {
   text-align: center;
   color: rgb(16, 16, 17);
-  font-size: 20px;
+  font-size: 13px;
   font-weight: bold;
   font-family: cursive;
 }
@@ -55,7 +56,7 @@ h5 {
 }
 
 .card-title:hover {
-  color: rgb(78, 78, 243);
+  color:dimgray;
 }
 
 .card,
@@ -72,9 +73,9 @@ img {
 }
 
 .card {
-  height: 300px;
-  width: 15rem;
-  margin-top: 20px;
+  height: 290px;
+  width: 13rem;
+  margin-top: 20px; 
 }
 
 input[type=text] {
@@ -103,7 +104,7 @@ input[type=text] {
 .card-img-top {
   width: 150px;
   height: 150px;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
 .Amount {
@@ -146,4 +147,14 @@ input[type=text] {
 
 .btn-1:hover {
   background-color: black;
+}
+
+.hr{
+  width: 95%;
+}
+
+
+.list{
+  font-size: 30px;
+  font-weight: bold;
 }

@@ -21,7 +21,7 @@ $.ajax({
                                     .split(' ')
                                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                     .join(' ');
-                                    html += '<div class="card p1 column catelist" style="width: 8rem; height: 13rem;" id='+cat+'>';
+                                    html += '<div class="card p1 column catelist" style="width: 8rem; height: 11rem;" id='+cat+'>';
                                     html += '<img src="./images/'+cat+'.png" alt="" class="CardImage">';
                                     html += '<a href="#" class="text-decoration-none ">';
                                     html += '<h5 class="fw-bold text-dark">'+ formattedCat+'</h5>';
@@ -42,8 +42,9 @@ $(document).on("click", ".catelist", function () {
         data: {},
         success:function(response){  
             let html = "";
-            response.products.forEach(product => {              
-                html += '   <div class="col-lg-4 " >';
+            response.products.forEach(product => {   
+                  
+                html += '   <div class="col-lg-3 " >';
                 html += '       <div class="card product"  data-product-id='+product.id+'>';
                 html += '            <img src="'+product.thumbnail+'" class="card-img-top" alt="...">';
                 html += '           <div class="card-body">';
